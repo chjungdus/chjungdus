@@ -52,16 +52,16 @@ const photoSrcs = [
 ];
 ---
 
-<section class="py-20 md:py-28 bg-gray-50">
+<section class="py-20 md:py-28 bg-gray-50 cleaning-bg">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <div class="text-center mb-14">
+    <div class="text-center mb-14 reveal">
       <span class="inline-block text-eco-600 font-semibold text-sm uppercase tracking-widest mb-3">{labels.title}</span>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">{labels.heading}</h2>
       <p class="text-lg text-gray-500 max-w-2xl mx-auto">{labels.subtitle}</p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
       {currentPhotos.map((photo, i) => (
         <div class="group relative overflow-hidden aspect-[4/3]">
           <img
@@ -81,3 +81,11 @@ const photoSrcs = [
 
   </div>
 </section>
+
+<style>
+  .cleaning-bg {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg transform='rotate(-8 30 38)' fill='none' stroke='%237c3aed' stroke-opacity='.18' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 24 L20 52 L38 52 L38 24 Z'/%3E%3Cpath d='M24 18 L34 18 L34 24 L24 24 Z'/%3E%3Cline x1='34' y1='20' x2='46' y2='16'/%3E%3Cpath d='M34 27 L44 30 L42 35 L34 32 Z'/%3E%3Ccircle cx='48' cy='14' r='1.5' fill='%237c3aed' fill-opacity='.15' stroke='none'/%3E%3Ccircle cx='52' cy='11' r='1' fill='%237c3aed' fill-opacity='.12' stroke='none'/%3E%3C/g%3E%3Cg transform='rotate(7 105 95)' fill='none' stroke='%237c3aed' stroke-opacity='.17' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='105' y1='70' x2='105' y2='108'/%3E%3Cline x1='95' y1='108' x2='115' y2='108'/%3E%3Cpath d='M96 108 Q96 118 105 118 Q114 118 114 108'/%3E%3C/g%3E%3Cg fill='none' stroke='%237c3aed' stroke-opacity='.12' stroke-width='1.5'%3E%3Ccircle cx='72' cy='50' r='4'/%3E%3Ccircle cx='82' cy='42' r='2.5'/%3E%3Ccircle cx='65' cy='42' r='2'/%3E%3C/g%3E%3Cg transform='rotate(-6 28 102)' fill='none' stroke='%237c3aed' stroke-opacity='.15' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 94 L14 118 L42 118 L38 94 Z'/%3E%3Cline x1='18' y1='94' x2='38' y2='94'/%3E%3Cpath d='M21 91 Q28 84 35 91'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 140px 140px;
+  }
+</style>
