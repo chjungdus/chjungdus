@@ -2,9 +2,11 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Hero from '../../components/Hero.astro';
-import SeccionesHome from '../../components/SeccionesHome.astro';
+import USPLeiste from '../../components/USPLeiste.astro';
 import ServiciosPreview from '../../components/ServiciosPreview.astro';
 import AntesDespues from '../../components/AntesDespues.astro';
+import Testimoniales from '../../components/Testimoniales.astro';
+import Contacto from '../../components/Contacto.astro';
 import Footer from '../../components/Footer.astro';
 const lang = 'de' as const;
 ---
@@ -12,9 +14,11 @@ const lang = 'de' as const;
   <Header lang={lang} page="" />
   <main>
     <Hero lang={lang} />
-    <SeccionesHome lang={lang} />
+    <USPLeiste lang={lang} />
     <ServiciosPreview lang={lang} />
     <AntesDespues lang={lang} />
+    <Testimoniales lang={lang} />
+    <Contacto lang={lang} />
   </main>
   <Footer lang={lang} />
 </Layout>

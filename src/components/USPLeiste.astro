@@ -1,0 +1,94 @@
+---
+import type { Lang } from '../i18n/translations';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  es: {
+    label: 'Por qué elegirnos',
+    heading: 'Limpieza profesional, trato personal',
+    items: [
+      {
+        title: 'Davinia al frente de cada trabajo',
+        desc: 'No subcontratamos. Davinia Gómez Baranda está presente en cada servicio, garantizando el mismo nivel de calidad en todo momento.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>`,
+      },
+      {
+        title: 'Presupuesto en 24 horas',
+        desc: 'Sin letra pequeña. Llamamos, evaluamos el trabajo y enviamos un presupuesto claro y detallado sin ningún coste ni compromiso.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>`,
+      },
+      {
+        title: 'Maquinaria Kärcher profesional',
+        desc: 'Para tapicerías y limpiezas a fondo usamos equipos de inyección-extracción Kärcher, los mismos que usan las empresas especializadas.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+      },
+    ],
+  },
+  en: {
+    label: 'Why choose us',
+    heading: 'Professional cleaning, personal service',
+    items: [
+      {
+        title: 'Davinia leads every job',
+        desc: 'We do not subcontract. Davinia Gómez Baranda is present at every service, guaranteeing the same level of quality every time.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>`,
+      },
+      {
+        title: 'Quote within 24 hours',
+        desc: 'No small print. We call, assess the job, and send a clear, detailed quote with no cost or obligation.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>`,
+      },
+      {
+        title: 'Professional Kärcher machinery',
+        desc: 'For upholstery and deep cleans we use Kärcher injection-extraction equipment, the same used by specialist firms.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+      },
+    ],
+  },
+  de: {
+    label: 'Warum uns wählen',
+    heading: 'Professionelle Reinigung, persönlicher Service',
+    items: [
+      {
+        title: 'Davinia leitet jeden Auftrag',
+        desc: 'Wir vergeben keine Unteraufträge. Davinia Gómez Baranda ist bei jedem Einsatz persönlich dabei und garantiert durchgehend gleichbleibende Qualität.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>`,
+      },
+      {
+        title: 'Angebot innerhalb von 24 Stunden',
+        desc: 'Kein Kleingedrucktes. Wir rufen an, bewerten den Auftrag und senden ein klares, detailliertes Angebot — kostenlos und unverbindlich.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>`,
+      },
+      {
+        title: 'Professionelle Kärcher-Maschinen',
+        desc: 'Für Polster und Grundreinigungen setzen wir Kärcher-Injektions- und Extraktionsgeräte ein — dieselben, die Fachbetriebe verwenden.',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+      },
+    ],
+  },
+};
+
+const c = content[lang];
+---
+
+<section class="bg-eco-950 py-16 md:py-20 border-t border-eco-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <span class="inline-block text-eco-400 font-semibold text-xs uppercase tracking-widest mb-3">{c.label}</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white">{c.heading}</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-eco-800">
+      {c.items.map(item => (
+        <div class="px-8 py-6 md:py-0 first:pl-0 last:pr-0">
+          <div class="text-eco-400 mb-4" set:html={item.icon} />
+          <h3 class="text-white font-bold text-base mb-2">{item.title}</h3>
+          <p class="text-eco-400 text-sm leading-relaxed">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
