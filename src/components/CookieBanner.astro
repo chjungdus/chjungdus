@@ -1,0 +1,36 @@
+---
+import type { Lang } from '../i18n/translations';
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const t = {
+  es: { text: 'Usamos una analítica sencilla para contar visitas y cuántas personas llaman o escriben por WhatsApp. No usamos publicidad ni vendemos datos.', accept: 'Aceptar', reject: 'Rechazar', more: 'Más información', href: '/privacidad/' },
+  en: { text: 'We use simple analytics to count visits and how many people call or message us on WhatsApp. No advertising, no selling of data.', accept: 'Accept', reject: 'Decline', more: 'More information', href: '/en/privacy/' },
+  de: { text: 'Wir nutzen eine einfache Statistik, um Besuche und die Zahl der Anrufe und WhatsApp-Nachrichten zu zählen. Keine Werbung, kein Datenverkauf.', accept: 'Akzeptieren', reject: 'Ablehnen', more: 'Mehr erfahren', href: '/de/datenschutz/' },
+}[lang];
+---
+
+<div id="cookie-banner" hidden class="fixed z-50 bottom-0 left-0 right-0 sm:left-4 sm:bottom-4 sm:right-auto sm:max-w-md bg-white border border-gray-300 shadow-xl p-5 print:hidden">
+  <p class="text-gray-700 text-sm leading-relaxed mb-4">
+    {t.text} <a href={t.href} class="text-eco-700 underline">{t.more}</a>
+  </p>
+  <div class="flex gap-3">
+    <button type="button" id="cookie-accept" class="bg-eco-700 hover:bg-eco-800 text-white px-5 py-2 text-sm font-bold transition-colors duration-150">{t.accept}</button>
+    <button type="button" id="cookie-reject" class="border border-gray-300 hover:bg-gray-50 text-gray-700 px-5 py-2 text-sm font-bold transition-colors duration-150">{t.reject}</button>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-banner');
+  const KEY = 'consent-analytics';
+  let saved: string | null = null;
+  try { saved = localStorage.getItem(KEY); } catch {}
+  if (!saved && banner) banner.hidden = false;
+  const decide = (value: 'yes' | 'no') => {
+    try { localStorage.setItem(KEY, value); } catch {}
+    if (banner) banner.hidden = true;
+    if (value === 'yes') document.dispatchEvent(new Event('analytics-consent'));
+  };
+  document.getElementById('cookie-accept')?.addEventListener('click', () => decide('yes'));
+  document.getElementById('cookie-reject')?.addEventListener('click', () => decide('no'));
+</script>

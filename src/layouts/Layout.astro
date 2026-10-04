@@ -2,6 +2,7 @@
 import type { Lang } from '../i18n/translations';
 import { t } from '../i18n/translations';
 import FloatingContact from '../components/FloatingContact.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
   lang?: Lang;
@@ -170,13 +171,25 @@ const ogImage = `${siteUrl}/images/van-logo.jpeg`;
       }
     </style>
   </head>
-  <body class="bg-white text-gray-800 antialiased">
+  <body class="bg-white text-gray-800 antialiased" data-gc={goatcounterCode}>
     <slot />
     <FloatingContact lang={lang} />
-    {goatcounterCode && (
-      <script is:inline data-goatcounter={`https://${goatcounterCode}.goatcounter.com/count`} async src="//gc.zgo.at/count.js"></script>
-    )}
+    <CookieBanner lang={lang} />
     <script>
+      const gcCode = document.body.dataset.gc;
+      const loadAnalytics = () => {
+        if (!gcCode || document.getElementById('gc-script')) return;
+        const el = document.createElement('script');
+        el.id = 'gc-script';
+        el.async = true;
+        el.dataset.goatcounter = `https://${gcCode}.goatcounter.com/count`;
+        el.src = '//gc.zgo.at/count.js';
+        document.head.appendChild(el);
+      };
+      let consent: string | null = null;
+      try { consent = localStorage.getItem('consent-analytics'); } catch {}
+      if (consent === 'yes') loadAnalytics();
+      document.addEventListener('analytics-consent', loadAnalytics);
       document.addEventListener('click', (ev) => {
         const a = (ev.target as Element).closest('a');
         if (!a) return;
