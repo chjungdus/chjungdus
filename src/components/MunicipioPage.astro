@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  name: string;
+  title: string;
+  description: string;
+  h1: string;
+  intro: string[];
+  focus: { title: string; desc: string }[];
+  slug: string;
+}
+const { name, title, description, h1, intro, focus, slug } = Astro.props;
+const lang = 'es' as const;
+const phone = 'tel:+34605984005';
+const whatsapp = `https://wa.me/34605984005?text=${encodeURIComponent(`Hola, necesito un servicio de limpieza en ${name}`)}`;
+
+const services = [
+  { title: 'Limpieza doméstica', desc: 'Hogares, pisos y casas rurales, de forma regular o puntual. 13 € / hora.', href: '/servicios/' },
+  { title: 'Limpieza de fin de obra', desc: 'Polvo de obra, restos de material y acabados tras reformas. Desde 4 € / m².', href: '/fin-de-obra/' },
+  { title: 'Limpieza de tapicerías', desc: 'Sofás, sillones y colchones con maquinaria Kärcher de inyección-extracción.', href: '/tapiceria/' },
+  { title: 'Limpieza profunda y cristales', desc: 'Limpieza a fondo de viviendas y locales; ventanas y cristaleras sin marcas.', href: '/limpieza-profunda/' },
+];
+
+const towns = [
+  { name: 'Villarcayo', href: '/limpieza-villarcayo/' },
+  { name: 'Medina de Pomar', href: '/limpieza-medina-de-pomar/' },
+  { name: 'Valle de Mena', href: '/limpieza-valle-de-mena/' },
+  { name: 'Trespaderne', href: '/limpieza-trespaderne/' },
+  { name: 'Las Merindades', href: '/limpieza-en-las-merindades/' },
+].filter(t => t.href !== slug);
+---
+<Layout lang={lang} title={title} description={description} noAlternates={true}>
+  <Header lang={lang} page="" />
+  <main>
+
+    <section class="bg-eco-900 text-white py-20 md:py-28">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-block bg-eco-700 text-eco-100 text-xs font-semibold px-4 py-1.5 mb-6 uppercase tracking-widest">Limpiezas El Valle · Las Merindades</span>
+        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-6">{h1}</h1>
+        <p class="text-eco-200 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">{intro[0]}</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={phone} class="inline-flex items-center justify-center bg-white text-eco-900 hover:bg-eco-50 px-8 py-4 font-bold text-base transition-colors duration-150">Llamar: 605 984 005</a>
+          <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center border border-eco-500 text-eco-200 hover:bg-eco-800 px-8 py-4 font-bold text-base transition-colors duration-150">Escribir por WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="border-l-4 border-eco-600 pl-6 mb-8">
+          <h2 class="text-3xl font-extrabold text-gray-900">Empresa de limpieza para {name}</h2>
+        </div>
+        {intro.slice(1).map(p => <p class="text-gray-600 leading-relaxed mb-5">{p}</p>)}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+          {focus.map(f => (
+            <div class="border border-gray-200 p-6">
+              <h3 class="font-bold text-gray-900 mb-2">{f.title}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-20 bg-gray-50">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="border-l-4 border-eco-600 pl-6 mb-10">
+          <h2 class="text-3xl font-extrabold text-gray-900">Servicios de limpieza en {name}</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {services.map(s => (
+            <a href={s.href} class="group bg-white border border-gray-200 hover:border-eco-500 p-6 transition-colors duration-150">
+              <h3 class="font-bold text-gray-900 group-hover:text-eco-700 mb-2">{s.title}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
+            </a>
+          ))}
+        </div>
+        <p class="text-gray-500 text-sm mt-8">Desplazamiento fuera de Espinosa de los Monteros: 1 € / km. Presupuesto siempre gratuito y sin compromiso. Atendemos de lunes a viernes de 9:00 a 19:00 h.</p>
+      </div>
+    </section>
+
+    <section class="py-14 bg-white border-t border-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">También limpiamos en</h2>
+        <div class="flex flex-wrap gap-3">
+          {towns.map(t => <a href={t.href} class="border border-eco-600 text-eco-700 hover:bg-eco-50 px-4 py-2 text-sm font-semibold transition-colors duration-150">Limpieza en {t.name}</a>)}
+          <a href="/zona/" class="border border-gray-300 text-gray-600 hover:bg-gray-50 px-4 py-2 text-sm font-semibold transition-colors duration-150">Toda la zona de servicio</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-eco-700">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <h2 class="text-3xl font-extrabold mb-4">¿Necesitas limpieza en {name}?</h2>
+        <p class="text-eco-100 mb-8">Cuéntanos qué necesitas y te enviamos un presupuesto sin compromiso.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={phone} class="inline-flex items-center justify-center bg-white text-eco-900 hover:bg-eco-50 px-8 py-4 font-bold text-base transition-colors duration-150">Llamar: 605 984 005</a>
+          <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center border-2 border-white text-white hover:bg-eco-800 px-8 py-4 font-bold text-base transition-colors duration-150">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer lang={lang} />
+</Layout>

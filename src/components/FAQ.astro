@@ -8,6 +8,7 @@ const tr = t(lang);
 const faqs = {
   es: [
     { q: '¿En qué zonas prestáis servicio?', a: 'Trabajamos en Espinosa de los Monteros y en toda la comarca de Las Merindades, en la provincia de Burgos. Esto incluye municipios como Villarcayo, Medina de Pomar, Trespaderne, Valle de Mena, Merindad de Sotoscueva, Merindad de Cuesta Urria y todos los núcleos de la comarca. Si tienes dudas sobre si llegamos a tu zona concreta, no dudes en consultarnos.' },
+    { q: '¿Hay empresas de limpieza en Las Merindades?', a: 'Sí. Limpiezas El Valle es una empresa de limpieza con sede en Espinosa de los Monteros que presta servicio en toda Las Merindades: Villarcayo, Medina de Pomar, Trespaderne, Valle de Mena y el resto de municipios de la comarca. Hacemos limpieza doméstica, fin de obra, tapicerías, limpieza profunda y cristales.' },
     { q: '¿Cómo puedo solicitar un presupuesto?', a: 'El proceso es muy sencillo: puedes llamarnos directamente al 605 984 005 o escribirnos por WhatsApp. Cuéntanos qué tipo de limpieza necesitas, las características del espacio y la frecuencia aproximada que buscas, y te enviaremos un presupuesto personalizado. El presupuesto es siempre gratuito y sin ningún tipo de compromiso.' },
     { q: '¿Qué horarios tenéis disponibles?', a: 'Atendemos de lunes a viernes de 9:00 a 19:00 h. Si necesitas un servicio fuera de este horario, consúltanos y buscamos una solución. Nuestro objetivo es que el servicio se ajuste a tu vida y no al revés.' },
     { q: '¿Qué productos utilizáis?', a: 'Utilizamos productos de limpieza profesionales adaptados a cada tipo de superficie y trabajo. Acudimos siempre con todo el material necesario, sin que el cliente tenga que preocuparse por nada.' },
@@ -45,7 +46,13 @@ const faqs = {
 };
 
 const currentFaqs = faqs[lang];
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: currentFaqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
 ---
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
 <section class="py-20 md:py-28 bg-gray-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

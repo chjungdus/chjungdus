@@ -1,14 +1,18 @@
 ---
 import type { Lang } from '../i18n/translations';
 import { t } from '../i18n/translations';
+import FloatingContact from '../components/FloatingContact.astro';
 
 interface Props {
   lang?: Lang;
   title?: string;
   description?: string;
+  noAlternates?: boolean;
 }
 
-const { lang = 'es', title, description } = Astro.props;
+const { lang = 'es', title, description, noAlternates = false } = Astro.props;
+// GoatCounter-Code (z. B. 'limpiezas-el-valle' für limpiezas-el-valle.goatcounter.com). Leer = Tracking aus.
+const goatcounterCode = '';
 const tr = t(lang);
 const pageTitle = title ?? tr.siteTitle;
 const pageDesc = description ?? tr.siteDescription;
@@ -41,10 +45,14 @@ const ogImage = `${siteUrl}/images/van-logo.jpeg`;
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- hreflang alternates -->
-    <link rel="alternate" hreflang="es" href={esUrl} />
-    <link rel="alternate" hreflang="en" href={enUrl} />
-    <link rel="alternate" hreflang="de" href={deUrl} />
-    <link rel="alternate" hreflang="x-default" href={esUrl} />
+    {!noAlternates && (
+      <>
+        <link rel="alternate" hreflang="es" href={esUrl} />
+        <link rel="alternate" hreflang="en" href={enUrl} />
+        <link rel="alternate" hreflang="de" href={deUrl} />
+        <link rel="alternate" hreflang="x-default" href={esUrl} />
+      </>
+    )}
 
     <!-- Open Graph -->
     <meta property="og:title" content={pageTitle} />
@@ -164,7 +172,23 @@ const ogImage = `${siteUrl}/images/van-logo.jpeg`;
   </head>
   <body class="bg-white text-gray-800 antialiased">
     <slot />
+    <FloatingContact lang={lang} />
+    {goatcounterCode && (
+      <script is:inline data-goatcounter={`https://${goatcounterCode}.goatcounter.com/count`} async src="//gc.zgo.at/count.js"></script>
+    )}
     <script>
+      document.addEventListener('click', (ev) => {
+        const a = (ev.target as Element).closest('a');
+        if (!a) return;
+        const href = a.getAttribute('href') || '';
+        const kind = href.startsWith('tel:') ? 'llamada' : href.includes('wa.me') ? 'whatsapp' : null;
+        if (!kind) return;
+        const where = a.dataset.loc || a.closest('section')?.id || a.closest('footer')?.tagName.toLowerCase() || 'pagina';
+        const gc = (window as any).goatcounter;
+        if (gc && gc.count) {
+          gc.count({ path: `click-${kind}/${where}`, title: `${kind} (${where}) ${location.pathname}`, event: true });
+        }
+      });
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }

@@ -3,8 +3,8 @@ export type Lang = 'es' | 'en' | 'de';
 export const translations = {
   es: {
     // Meta
-    siteTitle: 'Limpiezas El Valle | Limpieza en Espinosa de los Monteros y Las Merindades',
-    siteDescription: 'Empresa de limpieza profesional en Espinosa de los Monteros y Las Merindades. Limpieza doméstica, fin de obra, tapicerías, limpieza profunda y cristales. Presupuesto sin compromiso.',
+    siteTitle: 'Limpiezas en Las Merindades | Empresa de limpieza en Espinosa de los Monteros',
+    siteDescription: 'Limpiezas en Las Merindades: empresa de limpieza en Espinosa de los Monteros, Villarcayo, Medina de Pomar, Valle de Mena y Trespaderne. Hogar, fin de obra, tapicerías y cristales. Presupuesto gratis.',
 
     // Header
     navHome: 'Inicio',
